@@ -1,0 +1,23 @@
+﻿<Window x:Class="ArchEditor.Views.ProjectBrowserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArchEditor.Views"
+        mc:Ignorable="d"
+        Title="ProjectBrowserWindow" Height="510" Width="720"
+        Closing="Window_Closing">
+    <Border CornerRadius="10"
+            Padding="10"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Stretch">
+        <TabControl x:Name="TabControl" VerticalAlignment="Stretch">
+            <TabItem Header="Open Project">
+                <local:OpenProjectView DataContext="{Binding OpenProjectViewModel}"/>
+            </TabItem>
+            <TabItem Header="Create Project">
+                <local:CreateProjectView DataContext="{Binding CreateProjectViewModel}"/>
+            </TabItem>
+        </TabControl>
+    </Border>
+</Window>

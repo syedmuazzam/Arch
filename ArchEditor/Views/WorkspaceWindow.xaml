@@ -1,0 +1,51 @@
+﻿<Window
+    x:Class="ArchEditor.Views.WorkspaceWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:editors="clr-namespace:ArchEditor.Views.Editors"
+    Title="WorkspaceWindow" Width="960"
+    Height="540" mc:Ignorable="d">
+    <Window.InputBindings>
+        <KeyBinding Key="Z" Modifiers="Control" Command="{Binding UndoCommand}"/>
+        <KeyBinding Key="Y" Modifiers="Control" Command="{Binding RedoCommand}"/>
+        <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveCommand}"/>
+    </Window.InputBindings>
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <TextBlock Text="{Binding StatusMessage}"/>
+        </StatusBar>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <editors:ProjectHierarchyView
+                    DataContext="{Binding UpperLeftViewModel}"/>
+                <GridSplitter
+                Grid.Row="1" Height="5" HorizontalAlignment="Stretch"
+                VerticalAlignment="Top" />
+            </Grid>
+            <GridSplitter
+            Grid.Column="1" Width="5" HorizontalAlignment="Left"
+            VerticalAlignment="Stretch" />
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <editors:InspectorView
+                    DataContext="{Binding UpperRightViewModel}"/>
+                <GridSplitter
+                Grid.Row="1" Height="5" HorizontalAlignment="Stretch"
+                VerticalAlignment="Top" />
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>

@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="ArchEditor.Views.Editors.InspectorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="450">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <ScrollViewer.Style>
+            <Style TargetType="ScrollViewer">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding GameObject}" Value="{x:Null}">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ScrollViewer.Style>
+        <StackPanel Orientation="Vertical"
+                    Margin="10 0" CanVerticallyScroll="True">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Name" Grid.Column="0"/>
+                <TextBox Grid.Column="1" Text="{Binding GameObject.Name}"/>
+            </Grid>
+            <Expander Header="Transform">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Position" HorizontalAlignment="Left"/>
+                        <TextBlock Text="X"/>
+                        <TextBox Text="{Binding GameObject.Transform.Position.X}"/>
+                        <TextBlock Text="Y"/>
+                        <TextBox Text="{Binding GameObject.Transform.Position.Y}"/>
+                        <TextBlock Text="Z"/>
+                        <TextBox Text="{Binding GameObject.Transform.Position.Z}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left">
+                        <TextBlock Text="Rotation"/>
+                        <TextBlock Text="X"/>
+                        <TextBox Text="{Binding GameObject.Transform.Rotation.X}"/>
+                        <TextBlock Text="Y"/>
+                        <TextBox Text="{Binding GameObject.Transform.Rotation.Y}"/>
+                        <TextBlock Text="Z"/>
+                        <TextBox Text="{Binding GameObject.Transform.Rotation.Z}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left">
+                        <TextBlock Text="Scale"/>
+                        <TextBlock Text="X"/>
+                        <TextBox Text="{Binding GameObject.Transform.Scale.X}"/>
+                        <TextBlock Text="Y"/>
+                        <TextBox Text="{Binding GameObject.Transform.Scale.Y}"/>
+                        <TextBlock Text="Z"/>
+                        <TextBox Text="{Binding GameObject.Transform.Scale.Z}"/>
+                    </StackPanel>
+                </Grid>
+            </Expander>
+            <StackPanel Orientation="Vertical">
+                <ItemsControl ItemsSource="{Binding GameObject.Components}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ParentGameObject.Name}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+            <Button Content="Add Component" Command="{Binding AddComponentCommand}"
+                HorizontalAlignment="Center" Margin="0 5" Padding="10 0"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
