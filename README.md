@@ -42,4 +42,4 @@ Arch is released under the MIT License. See [LICENSE](./LICENSE) for more inform
 
 ## Contact
 
-If you have any questions or suggestions, feel free to reach out to us at [syed.muazzam@outlook.com](mailto:syed.muazzam@outlook.com).
+If you have any questions or suggestions, feel free to reach out to me at [syed.muazzam@outlook.com](mailto:syed.muazzam@outlook.com).
